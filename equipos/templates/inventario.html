@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventario de Equipos</title>
+</head>
+<body>
+    <h2>Inventario de Equipos</h2>
+    <p>Bienvenido, {{ user.username }} | <a href="{% url 'logout' %}">Cerrar sesión</a></p>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Nombre</th>
+            <th>Memoria RAM</th>
+            <th>Almacenamiento</th>
+            <th>Monitor</th>
+            <th>Ratón</th>
+            <th>Sistema Operativo</th>
+        </tr>
+        {% for equipo in equipos %}
+        <tr>
+            <td>{{ equipo.nombre }}</td>
+            <td>{{ equipo.memoria_ram }}</td>
+            <td>{{ equipo.almacenamiento }}</td>
+            <td>{{ equipo.monitor }}</td>
+            <td>{{ equipo.raton }}</td>
+            <td>{{ equipo.sistema_operativo }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No hay equipos registrados.</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
