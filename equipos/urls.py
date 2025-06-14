@@ -10,4 +10,5 @@ urlpatterns = [
     path('agregar_equipo/', views.agregar_equipo, name='agregar_equipo'),
     path('editar_equipo/<int:equipo_id>/', views.editar_equipo, name='editar_equipo'),
     path('eliminar_equipo/<int:equipo_id>/', views.eliminar_equipo, name='eliminar_equipo'),
+    path('principal/',views.principal, name='principal'),
 ]
