@@ -15,7 +15,6 @@ class RegistroForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         if commit:
             user.save()
-            rol = self.cleaned_data['rol']
-            group = Group.objects.get(name=rol)
+            group = Group.objects.get(name=self.cleaned_data['rol'])
             user.groups.add(group)
         return user

@@ -4,14 +4,15 @@
     <title>Iniciar Sesión</title>
 </head>
 <body>
-    <h2>Iniciar Sesión</h2>
+    <h1>Iniciar Sesión</h1>
+    {% if form.errors %}
+        <p style="color:red;">Nombre de usuario o contraseña incorrectos.</p>
+    {% endif %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Entrar</button>
+        <button type="submit">Iniciar Sesión</button>
     </form>
-    <p><a href="{% url 'registro' %}">¿No tienes cuenta? Regístrate</a></p>
+    <p>¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate</a></p>
 </body>
 </html>
-
-

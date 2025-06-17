@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio</title>
+</head>
+<body>
+    <h1>Bienvenido al Gestor de Equipos</h1>
+    {% if user.is_authenticated %}
+        <p>Hola, {{ user.username }} | <a href="{% url 'logout' %}">Cerrar sesión</a></p>
+        <p><a href="{% url 'redirect_post_login' %}">Ir al panel</a></p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Iniciar sesión</a> | <a href="{% url 'registro' %}">Registrarse</a></p>
+    {% endif %}
+</body>
+</html>

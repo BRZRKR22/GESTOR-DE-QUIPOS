@@ -1,0 +1,34 @@
+<!-- editar_equipo.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Equipo</title>
+</head>
+<body>
+    <h1>Editar Equipo: {{ equipo.nombre }}</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label>Nombre:</label><br><input type="text" name="nombre" value="{{ equipo.nombre }}" required><br><br>
+        <label>Memoria RAM:</label><br><input type="text" name="memoria_ram" value="{{ equipo.memoria_ram }}" required><br><br>
+        <label>Almacenamiento:</label><br><input type="text" name="almacenamiento" value="{{ equipo.almacenamiento }}" required><br><br>
+        <label>Monitor:</label><br><input type="text" name="monitor" value="{{ equipo.monitor }}" required><br><br>
+        <label>Ratón:</label><br><input type="text" name="raton" value="{{ equipo.raton }}" required><br><br>
+        <label>Sistema Operativo:</label><br><input type="text" name="sistema_operativo" value="{{ equipo.sistema_operativo }}" required><br><br>
+        <label>Estado:</label><br>
+        <select name="estado" required>
+            <option value="disponible" {% if equipo.estado == 'disponible' %}selected{% endif %}>Disponible</option>
+            <option value="mantenimiento" {% if equipo.estado == 'mantenimiento' %}selected{% endif %}>En mantenimiento</option>
+            <option value="no_disponible" {% if equipo.estado == 'no_disponible' %}selected{% endif %}>No disponible</option>
+        </select><br><br>
+        <button type="submit">Actualizar Equipo</button>
+    </form>
+    <p><a href="{% url 'inventario_admin' %}">Volver al Inventario</a></p>
+</body>
+</html>
