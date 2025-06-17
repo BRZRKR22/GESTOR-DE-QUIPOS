@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="inicio-body">
+    <div class="inicio-container">
+        <h1 class="inicio-titulo">Bienvenido al Gestor de Equipos</h1>
+        <p class="inicio-links">
+            <a href="{% url 'registro' %}" class="btn btn-acento">Registrarse</a>
+            <a href="{% url 'login' %}" class="btn btn-primario">Iniciar sesión</a>
+        </p>
+    </div>
+</body>
+</html>

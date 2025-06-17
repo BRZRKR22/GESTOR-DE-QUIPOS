@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario de Equipos</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="inventario-body">
+    <div class="inventario-container">
+        <h2 class="inventario-titulo">Inventario de Equipos</h2>
+        <p class="user-info">
+            Bienvenido, <strong>{{ user.username }}</strong> |
+            <a href="{% url 'logout' %}" class="link">Cerrar sesión</a>
+        </p>
+
+        <div class="tabla-scroll">
+            <table class="tabla-inventario">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Memoria RAM</th>
+                        <th>Almacenamiento</th>
+                        <th>Monitor</th>
+                        <th>Ratón</th>
+                        <th>Sistema Operativo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for equipo in equipos %}
+                    <tr>
+                        <td>{{ equipo.nombre }}</td>
+                        <td>{{ equipo.memoria_ram }}</td>
+                        <td>{{ equipo.almacenamiento }}</td>
+                        <td>{{ equipo.monitor }}</td>
+                        <td>{{ equipo.raton }}</td>
+                        <td>{{ equipo.sistema_operativo }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">No hay equipos registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

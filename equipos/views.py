@@ -9,6 +9,9 @@ from .models import Equipo
 def pagina_inicio(request):
     return render(request, 'equipos/inicio.html')
 
+def principal(request):
+    return render(request,'principal.html')
+
 def registro(request):
     if request.method == 'POST':
         form = RegistroForm(request.POST)

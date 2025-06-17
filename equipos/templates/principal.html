@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Equipos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #2d2199;
+      color: white;
+      transition: margin-left 0.3s ease;
+    }
+
+    .topbar {
+      background-color: #f46c1d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .search-bar {
+      flex: 1;
+      margin: 0 20px;
+      display: flex;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .user-icon {
+      font-size: 24px;
+    }
+
+    .sidebar {
+      background-color: #f7f1e3;
+      width: 220px;
+      height: 100vh;
+      position: fixed;
+      top: 50px;
+      left: 0;
+      padding: 20px;
+      display: none;
+      color: black;
+      z-index: 100;
+    }
+
+    .main-content {
+      transition: margin-left 0.3s ease;
+      padding: 30px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .equipo {
+      background-color: #3a2dd6;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .equipo:hover {
+      transform: scale(1.03);
+    }
+
+    .estado-funcional {
+      color: #00ff99;
+    }
+
+    .estado-mantenimiento {
+      color: #ffd700;
+    }
+
+    .estado-fuera {
+      color: #ff4444;
+    }
+
+    .agregar-equipo {
+      background-color: white;
+      color: #3a2dd6;
+      font-size: 30px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .agregar-equipo:hover {
+      background-color: #ddd;
+    }
+
+    .options-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .options-menu {
+      display: none;
+      position: absolute;
+      top: 35px;
+      right: 10px;
+      background-color: #fff;
+      color: black;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+      z-index: 10;
+    }
+
+    .options-menu button {
+      background: none;
+      border: none;
+      width: 100%;
+      padding: 10px 15px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .options-menu button:hover {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <i class="fas fa-bars menu-icon" onclick="toggleSidebar()"></i>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar">
+    </div>
+    <i class="fas fa-user user-icon"></i>
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <p><input type="radio" name="menu"> Opción 1</p>
+    <p><input type="radio" name="menu"> Opción 2</p>
+    <p><input type="radio" name="menu"> Opción 3</p>
+  </div>
+
+  <div class="main-content" id="main-content">
+    <div class="grid-container" id="grid-equipos">
+      <div class="equipo agregar-equipo">
+        <i class="fas fa-plus"></i>
+      </div>
+
+      <!-- Equipo de ejemplo -->
+      <div class="equipo">
+        <button class="options-btn" onclick="toggleMenu(event)">⋮</button>
+        <div class="options-menu">
+          <button onclick="cambiarNombre(this)">Cambiar nombre</button>
+          <button onclick="cambiarEstado(this)">Cambiar estado</button>
+        </div>
+        <i class="fas fa-desktop fa-3x estado-funcional"></i>
+        <p class="nombre">Equipo 1</p>
+        <p class="estado estado-funcional">Funcional</p>
+      </div>
+
+      <div class="equipo">
+        <button class="options-btn" onclick="toggleMenu(event)">⋮</button>
+        <div class="options-menu">
+          <button onclick="cambiarNombre(this)">Cambiar nombre</button>
+          <button onclick="cambiarEstado(this)">Cambiar estado</button>
+        </div>
+        <i class="fas fa-tools fa-3x estado-mantenimiento"></i>
+        <p class="nombre">Equipo 2</p>
+        <p class="estado estado-mantenimiento">En mantenimiento</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const mainContent = document.getElementById("main-content");
+
+      if (sidebar.style.display === "block") {
+        sidebar.style.display = "none";
+        mainContent.style.marginLeft = "0";
+      } else {
+        sidebar.style.display = "block";
+        mainContent.style.marginLeft = "220px";
+      }
+    }
+
+    function toggleMenu(event) {
+      event.stopPropagation();
+      const menus = document.querySelectorAll('.options-menu');
+      menus.forEach(m => m.style.display = 'none');
+
+      const menu = event.target.nextElementSibling;
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    window.onclick = function () {
+      document.querySelectorAll('.options-menu').forEach(menu => {
+        menu.style.display = 'none';
+      });
+    }
+
+    function cambiarEstado(btn) {
+      const equipo = btn.closest('.equipo');
+      const icono = equipo.querySelector("i");
+      const textoEstado = equipo.querySelector(".estado");
+
+      if (textoEstado.classList.contains("estado-funcional")) {
+        textoEstado.classList.replace("estado-funcional", "estado-mantenimiento");
+        textoEstado.textContent = "En mantenimiento";
+        icono.className = "fas fa-tools fa-3x estado-mantenimiento";
+      } else if (textoEstado.classList.contains("estado-mantenimiento")) {
+        textoEstado.classList.replace("estado-mantenimiento", "estado-fuera");
+        textoEstado.textContent = "Fuera de servicio";
+        icono.className = "fas fa-ban fa-3x estado-fuera";
+      } else {
+        textoEstado.classList.replace("estado-fuera", "estado-funcional");
+        textoEstado.textContent = "Funcional";
+        icono.className = "fas fa-desktop fa-3x estado-funcional";
+      }
+    }
+
+    function cambiarNombre(btn) {
+      const equipo = btn.closest('.equipo');
+      const nombre = equipo.querySelector(".nombre");
+      const nuevoNombre = prompt("Ingrese el nuevo nombre del equipo:", nombre.textContent);
+      if (nuevoNombre !== null && nuevoNombre.trim() !== "") {
+        nombre.textContent = nuevoNombre.trim();
+      }
+    }
+  </script>
+
+</body>
+</html>
