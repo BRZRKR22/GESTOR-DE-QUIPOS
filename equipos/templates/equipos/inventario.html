@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventario de Equipos</title>
+</head>
+<body>
+    <h1>Inventario de Equipos</h1>
+
+    <!-- Formulario para cerrar sesión -->
+    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Cerrar sesión</button>
+    </form>
+
+    <p>Hola, {{ user.username }} | </p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Memoria RAM</th>
+                <th>Almacenamiento</th>
+                <th>Monitor</th>
+                <th>Ratón</th>
+                <th>Sistema Operativo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipo in equipos %}
+                <tr>
+                    <td>{{ equipo.nombre }}</td>
+                    <td>{{ equipo.memoria_ram }}</td>
+                    <td>{{ equipo.almacenamiento }}</td>
+                    <td>{{ equipo.monitor }}</td>
+                    <td>{{ equipo.raton }}</td>
+                    <td>{{ equipo.sistema_operativo }}</td>
+                    <td>{{ equipo.get_estado_display }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7">No hay equipos registrados.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><a href="{% url 'inicio' %}">Volver al inicio</a></p>
+</body>
+</html>
