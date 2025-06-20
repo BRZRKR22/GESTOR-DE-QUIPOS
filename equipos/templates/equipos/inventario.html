@@ -2,19 +2,21 @@
 <html>
 <head>
     <title>Inventario de Equipos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos_vistas.css' %}">
 </head>
-<body>
+<body class="page-inventario">
     <h1>Inventario de Equipos</h1>
 
     <!-- Formulario para cerrar sesión -->
-    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+    <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
-        <button type="submit">Cerrar sesión</button>
+        <button type="submit" class="btn-logout">Cerrar sesión</button>
     </form>
 
-    <p>Hola, {{ user.username }} | </p>
+    <p>Hola, {{ user.username }}</p>
 
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>Nombre</th>

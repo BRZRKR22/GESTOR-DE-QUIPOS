@@ -1,18 +1,21 @@
-<!-- plantilla.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inventario Admin</title>
+    <title>Inventario para Administradores</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos_vistas.css' %}">
 </head>
-<body>
+<body class="page-inventario-admin">
     <h1>Inventario para Administradores</h1>
-   <form action="{% url 'logout' %}" method="post" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit">Cerrar sesión</button>
-</form>
 
-    <p><a href="{% url 'agregar_equipo' %}">Agregar nuevo equipo</a></p>
-    <table border="1">
+    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn-logout">Cerrar sesión</button>
+    </form>
+
+    <p><a href="{% url 'agregar_equipo' %}" class="btn-agregar">Agregar nuevo equipo</a></p>
+
+    <table>
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -36,8 +39,8 @@
                     <td>{{ equipo.sistema_operativo }}</td>
                     <td>{{ equipo.get_estado_display }}</td>
                     <td>
-                        <a href="{% url 'editar_equipo' equipo.id %}">Editar</a> |
-                        <a href="{% url 'eliminar_equipo' equipo.id %}">Eliminar</a>
+                        <a href="{% url 'editar_equipo' equipo.id %}" class="link-accion">Editar</a> |
+                        <a href="{% url 'eliminar_equipo' equipo.id %}" class="link-accion eliminar">Eliminar</a>
                     </td>
                 </tr>
             {% empty %}
@@ -47,6 +50,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <p><a href="{% url 'inicio' %}">Volver al inicio</a></p>
+
+    <p><a href="{% url 'inicio' %}" class="link-inicio">Volver al inicio</a></p>
 </body>
 </html>

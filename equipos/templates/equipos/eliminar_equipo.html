@@ -2,14 +2,19 @@
 <html>
 <head>
     <title>Eliminar Equipo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos_vistas.css' %}">
 </head>
-<body>
-    <h1>Eliminar Equipo</h1>
-    <p>¿Estás seguro de que deseas eliminar el equipo "{{ equipo.nombre }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Sí, eliminar</button>
-        <a href="{% url 'inventario_admin' %}">Cancelar</a>
-    </form>
+<body class="page-eliminar">
+    <div class="eliminar-box">
+        <h1>Eliminar Equipo</h1>
+        <p>¿Estás seguro de que deseas eliminar el equipo <strong>"{{ equipo.nombre }}"</strong>?</p>
+
+        <form method="post" class="form-eliminar">
+            {% csrf_token %}
+            <button type="submit" class="btn eliminar">Sí, eliminar</button>
+            <a href="{% url 'inventario_admin' %}" class="btn cancelar">Cancelar</a>
+        </form>
+    </div>
 </body>
 </html>
