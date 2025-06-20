@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Registro de Usuario</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/estilos_vistas.css' %}">
@@ -14,14 +15,50 @@
         {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
-                    <li>{{ message }}</li>
+                    <li class="{{ message.tags }}">{{ message }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
 
-        <form method="post">
+        <form method="post" id="registro-form">
             {% csrf_token %}
-            {{ form.as_p }}
+            
+            <!-- Username -->
+            <label for="id_username">Nombre de usuario</label>
+            <input type="text" name="username" maxlength="150" autofocus required id="id_username" placeholder="Tu nombre de usuario">
+            <div id="username-msg" class="validation-message info">
+                Máximo 150 caracteres. Letras, números y @/./+/-/_ únicamente.
+            </div>
+
+            <!-- Email -->
+            <label for="id_email">Correo electrónico</label>
+            <input type="email" name="email" required id="id_email" placeholder="tucorreo@ejemplo.com">
+
+            <!-- Password1 -->
+            <label for="id_password1">Contraseña</label>
+            <input type="password" name="password1" required id="id_password1" placeholder="Crea una contraseña segura">
+            <div id="password-msg" class="validation-message">
+                Tu contraseña debe tener al menos 8 caracteres, no ser común, ni completamente numérica.
+            </div>
+
+            <!-- Password2 -->
+            <label for="id_password2">Confirmar Contraseña</label>
+            <input type="password" name="password2" required id="id_password2" placeholder="Repite la contraseña">
+            <div id="confirm-msg" class="validation-message">
+                Asegúrate de que coincida con la contraseña anterior.
+            </div>
+
+            <!-- Rol -->
+            <label for="id_rol">Selecciona tu rol</label>
+            <div class="select-rol-container">
+                <select name="rol" id="id_rol" required>
+                    <option value="">-- Selecciona tu rol --</option>
+                    <option value="normal">Usuario Normal</option>
+                    <option value="admin">Administrador</option>
+                </select>
+            </div>
+
+            <!-- Botón -->
             <button type="submit" class="btn">Registrar</button>
         </form>
 
@@ -29,5 +66,29 @@
             <a href="{% url 'inicio' %}">Volver al inicio</a>
         </p>
     </div>
+
+    <script>
+        // Mostrar mensajes suavemente mientras el usuario escribe
+        const usernameInput = document.getElementById('id_username');
+        const usernameMsg = document.getElementById('username-msg');
+
+        const passwordInput = document.getElementById('id_password1');
+        const passwordMsg = document.getElementById('password-msg');
+
+        const confirmInput = document.getElementById('id_password2');
+        const confirmMsg = document.getElementById('confirm-msg');
+
+        usernameInput.addEventListener('input', () => {
+            usernameMsg.classList.add('active');
+        });
+
+        passwordInput.addEventListener('input', () => {
+            passwordMsg.classList.add('active');
+        });
+
+        confirmInput.addEventListener('input', () => {
+            confirmMsg.classList.add('active');
+        });
+    </script>
 </body>
 </html>

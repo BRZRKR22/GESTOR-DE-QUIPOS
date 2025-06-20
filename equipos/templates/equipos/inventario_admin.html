@@ -8,12 +8,15 @@
 <body class="page-inventario-admin">
     <h1>Inventario para Administradores</h1>
 
-    <form action="{% url 'logout' %}" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="btn-logout">Cerrar sesión</button>
-    </form>
+    <!-- Contenedor para botones de acciones superiores -->
+    <div class="acciones-superiores">
+        <a href="{% url 'agregar_equipo' %}" class="btn-agregar">Agregar nuevo equipo</a>
 
-    <p><a href="{% url 'agregar_equipo' %}" class="btn-agregar">Agregar nuevo equipo</a></p>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
+        </form>
+    </div>
 
     <table>
         <thead>
