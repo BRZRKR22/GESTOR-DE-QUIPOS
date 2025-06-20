@@ -1,34 +1,54 @@
-<!-- agregar_equipo.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Agregar Equipo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos_vistas.css' %}">
 </head>
-<body>
-    <h1>Agregar Nuevo Equipo</h1>
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        <label>Nombre:</label><br><input type="text" name="nombre" required><br><br>
-        <label>Memoria RAM:</label><br><input type="text" name="memoria_ram" required><br><br>
-        <label>Almacenamiento:</label><br><input type="text" name="almacenamiento" required><br><br>
-        <label>Monitor:</label><br><input type="text" name="monitor" required><br><br>
-        <label>Ratón:</label><br><input type="text" name="raton" required><br><br>
-        <label>Sistema Operativo:</label><br><input type="text" name="sistema_operativo" required><br><br>
-        <label>Estado:</label><br>
-        <select name="estado" required>
-            <option value="disponible">Disponible</option>
-            <option value="mantenimiento">En mantenimiento</option>
-            <option value="no_disponible">No disponible</option>
-        </select><br><br>
-        <button type="submit">Agregar Equipo</button>
-    </form>
-    <p><a href="{% url 'inventario_admin' %}">Volver al Inventario</a></p>
+<body class="formulario-agregar">
+    <div class="formulario-box">
+        <h1>Agregar Nuevo Equipo</h1>
+
+        {% if messages %}
+            <ul class="mensajes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="post" class="formulario">
+            {% csrf_token %}
+            
+            <label>Nombre:</label>
+            <input type="text" name="nombre" required>
+
+            <label>Memoria RAM:</label>
+            <input type="text" name="memoria_ram" required>
+
+            <label>Almacenamiento:</label>
+            <input type="text" name="almacenamiento" required>
+
+            <label>Monitor:</label>
+            <input type="text" name="monitor" required>
+
+            <label>Ratón:</label>
+            <input type="text" name="raton" required>
+
+            <label>Sistema Operativo:</label>
+            <input type="text" name="sistema_operativo" required>
+
+            <label>Estado:</label>
+            <select name="estado" required>
+                <option value="disponible">Disponible</option>
+                <option value="mantenimiento">En mantenimiento</option>
+                <option value="no_disponible">No disponible</option>
+            </select>
+
+            <button type="submit" class="btn">Agregar Equipo</button>
+        </form>
+
+        <p><a href="{% url 'inventario_admin' %}" class="btn secundaria">Volver al Inventario</a></p>
+    </div>
 </body>
 </html>

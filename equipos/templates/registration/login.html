@@ -2,17 +2,34 @@
 <html>
 <head>
     <title>Iniciar Sesión</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos_vistas.css' %}">
 </head>
-<body>
-    <h1>Iniciar Sesión</h1>
-    {% if form.errors %}
-        <p style="color:red;">Nombre de usuario o contraseña incorrectos.</p>
-    {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-    <p>¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate</a></p>
+
+<body class="page-login">
+
+    <div class="navbar">
+        <h1>Iniciar Sesión</h1>
+    </div>
+
+    <div class="auth-box">
+        {% if form.errors %}
+            <div class="alert">
+                Nombre de usuario o contraseña incorrectos.
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Iniciar Sesión</button>
+        </form>
+
+        <p class="register-link">
+            ¿No tienes una cuenta?
+            <a href="{% url 'registro' %}">Regístrate</a>
+        </p>
+    </div>
+
 </body>
 </html>
