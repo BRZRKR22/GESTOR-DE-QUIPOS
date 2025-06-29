@@ -1,0 +1,81 @@
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/prin.css' %}">
+<div class="container">
+    <!-- Barra lateral izquierda -->
+    <div class="sidebar">
+        <h3>ListPass</h3>
+        <ul class="link-list">
+            <li><a href="#"><i class="fab fa-google"></i> Gmail</a></li>
+            <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+            <li><a href="#"><i class="fas fa-map-marked-alt"></i> Maps</a></li>
+            <li><a href="#"><i class="fas fa-home"></i> Redhogar</a></li>
+            <li><a href="#"><i class="fas fa-palette"></i> ART street</a></li>
+            <li><a href="#"><i class="fab fa-netflix"></i> Netflix</a></li>
+            <li><a href="#"><i class="fas fa-robot"></i> ChatGPT</a></li>
+            <li><a href="#"><i class="fas fa-search"></i> DeepSeek</a></li>
+            <li><a href="#"><i class="fas fa-images"></i> Posters</a></li>
+        </ul>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <!-- Barra de búsqueda -->
+        <div class="search-bar">
+            <form action="" method="get">
+                <input type="text" name="q" placeholder="Buscar equipos...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- Lista de equipos -->
+        <div class="equipos-container">
+            <div class="equipo-card">
+                <div class="equipo-header">
+                    <h3>Equipo 1</h3>
+                    <span class="status-badge funcional">Funcional</span>
+                </div>
+                <div class="equipo-actions">
+                    <button class="action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <div class="action-menu">
+                        <a href="#"><i class="fas fa-info-circle"></i> Más detalles</a>
+                        <a href="#"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="#"><i class="fas fa-trash"></i> Eliminar</a>
+                    </div>
+                </div>
+                <div class="equipo-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+            </div>
+
+            <div class="equipo-card">
+                <div class="equipo-header">
+                    <h3>Equipo 2</h3>
+                    <span class="status-badge mantenimiento">En mantenimiento</span>
+                </div>
+                <div class="equipo-actions">
+                    <button class="action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <div class="action-menu">
+                        <a href="#"><i class="fas fa-info-circle"></i> Más detalles</a>
+                        <a href="#"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="#"><i class="fas fa-trash"></i> Eliminar</a>
+                    </div>
+                </div>
+                <div class="equipo-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+            </div>
+
+            <!-- Botón para agregar nuevo equipo -->
+            <div class="equipo-card add-equipo">
+                <a href="{% url 'agregar_equipo' %}">
+                    <i class="fas fa-plus"></i>
+                    <span>Agregar equipo</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
